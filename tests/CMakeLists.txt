@@ -15,8 +15,9 @@ set ( SRC_FILES
     ../src/decrypt.hpp
     ../src/base_decrypter.hpp
     ../src/caesar.hpp
-    ../src/symbolic.hpp
+    ../src/affine.hpp
 )
 
 add_executable( example1 example1.cpp ${SRC_FILES})
 add_executable( example2 example2.cpp ${SRC_FILES})
+add_executable( example3 example3.cpp ${SRC_FILES})

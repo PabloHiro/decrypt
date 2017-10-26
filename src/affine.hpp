@@ -1,9 +1,9 @@
-#ifndef SYMBOLIC_029F2NFI2NFM2
-#define SYMBOLIC_029F2NFI2NFM2
+#ifndef AFFINE_029F2NFI2NFM2
+#define AFFINE_029F2NFI2NFM2
 
 #include "base_decrypter.hpp"
 
-class symbolic : public base_decrypter
+class affine : public base_decrypter
 {
     private:
     
@@ -30,7 +30,7 @@ class symbolic : public base_decrypter
         bool found = false;
         int a = 0;
         int b = 0;
-        for( size_t i = 0; i < (this->my_txt.size() - key_word.size()); ++ i)
+        for( size_t i = 0; i < (this->my_txt.size() - key_word.size()); ++i)
         {
             if( found ) 
             {
@@ -38,29 +38,34 @@ class symbolic : public base_decrypter
             }
             // C1 = a*K1 + b
             // C2 = a*K2 + b
-            // a = (C1 - C2) / (K1 - K2)
+            // a * (K1 - K2) = (C1 - C2)
             // b = C1 - a*K1
             const int C1 = static_cast<int>(this->my_txt[i]);
             const int C2 = static_cast<int>(this->my_txt[i+1]);
             const int K1 = static_cast<int>(key_word[0]);
             const int K2 = static_cast<int>(key_word[1]);
-            const int dC = (C1-C2) >= 0 ? (C1-C2) : (25+(C1-C2));
-            const int dK = (K1-K2) >= 0 ? (K1-K2) : (25+(K1-K2));
-            std::cerr << "dC is " << dC <<", dK is " << dK <<std::endl;
-            // if a is an integer, there may be a solution
-            if ( ( dC > dK ) && !(dC%dK) )
+            const int dC = (C1-C2) >= 0 ? (C1-C2) : (26+(C1-C2));
+            const int dK = (K1-K2) >= 0 ? (K1-K2) : (26+(K1-K2));
+            if ( dK ) // Denominator not zero
             {
-                a = dC / dK;
-                b = C1 - a*K1;
-                b = (b >= 0) ? b : (25+b);
-                //std::cerr << "a is " << a <<", b is " << b <<std::endl;
+                a = 0;
+                // a * (K1 - K2) = (C1 - C2)
+                while( (dK*a)%26 != dC )
+                {
+                    ++a;
+                }
+                b = (C1 - a*K1);
+                while ( b < 0 )
+                {
+                    b += 26;
+                }
+                b %= 26;
                 for ( size_t j = 2; j < key_word.size(); ++j)
                 {
-                    const int CJ = static_cast<int>(this->my_txt[i+j]);
-                    const int KJ = static_cast<int>(key_word[j]);
+                    const int CJ = static_cast<int>(this->my_txt[i+j] - 'A');
+                    const int KJ = static_cast<int>(key_word[j] - 'A');
                     if ( CJ != ((a*KJ + b)%26) ) // Parameters dont match
                     {
-                        //std::cerr << "CJ is " << CJ <<", KJ is " << KJ <<std::endl;
                         found = false;
                         break;
                     }
@@ -74,22 +79,22 @@ class symbolic : public base_decrypter
         
         if( found )
         {
-            this->my_ans.resize(this->my_txt.size());
+            this->my_ans.clear();
+            this->my_ans.reserve(this->my_txt.size());
             
             for( size_t i = 0; i < this->my_txt.size(); ++i )
             {
-                int KI = static_cast<int>(this->my_txt[i]);
-                KI -= b;
-                KI = (KI >= 0) ? KI : (25+KI);
-                while ( !(KI%a) ) // If not integer
+                const int C = static_cast<int>(this->my_txt[i] - 'A');
+                int K = 0;
+                // a*K + b = C
+                while ( ((a*K + b)%26) != C )
                 {
-                    KI+=25;
+                    ++K;
                 }
-                KI /= a;
-                this->my_ans[i] = static_cast<char>(KI);
+                this->my_ans.push_back( static_cast<char>(K) + 'A');
             }
         }
     }
     
 };
-#endif //SYMBOLIC_029F2NFI2NFM2
+#endif //AFFINE_029F2NFI2NFM2

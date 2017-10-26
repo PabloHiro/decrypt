@@ -2,13 +2,13 @@
 #include <string>
 
 #include <decrypt.hpp>
-#include <symbolic.hpp>
+#include <affine.hpp>
 
 
 int main ( int argc, char **argv )
 {
     std::string the_text = "NWREPZPNCHMIRAIRNAUHZDPQJMHJQHAQKPJQCPPQJHWBNMBXQQNQKHXJNAIJHWFRMHTPQPCJWCHTKHTPKPJXCEREPJTNAZBKNMMPADPJUPWHCPUPRADNIHOQPIUZNBHXOMPRANXJQCNMRN";
     std::string the_key_word = "INDIANBOY";
-    std::cout << decrypt<symbolic>( the_text, the_key_word) << std::endl;
+    std::cout << decrypt<affine>( the_text, the_key_word ) << std::endl;
     return 0;
 }
