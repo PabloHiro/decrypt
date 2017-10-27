@@ -39,12 +39,6 @@ class portabellaso : public base_decrypter
     
     void decryption_method( std::string &key_word )
     {
-        if( this->my_txt.size() < key_word.size() )
-        {
-            std::cerr << std::endl << "The key word is too long for the text" << std::endl;
-            return;
-        }
-        
         //Given a keyword, we must find where in the text its placed. This can be achieved by classifying
         //the letters in the text in to the first half or the last half of the alphabet. Once this is done,
         //the place where the opposite of this classification matches with the keyword will allow us to find
@@ -113,14 +107,14 @@ class portabellaso : public base_decrypter
                 }
             }
 
-            // We decrypt from the key_word
-            // Onwards
+            // We decrypt from the keyword
+            // Forwards
             for ( size_t i = index; i < this->my_txt.size(); ++i )
             {
                 const int txt = static_cast<int>(this->my_txt[i] - 'A');
                 this->my_ans[i] = substitution(txt, password[(i-index)%password.size()]);
             }
-            //Backwards
+            // Backwards
             for ( size_t i = index; i > 0; --i )
             {
                 const int txt = static_cast<int>(this->my_txt[i] - 'A');
