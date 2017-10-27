@@ -16,12 +16,7 @@ class affine : public base_decrypter
     // the message.
     void decryption_method( std::string &key_word )
     {
-        if( this->my_txt.size() < key_word.size() )
-        {
-            std::cerr << std::endl << "The key word is too long for the text" << std::endl;
-            return;
-        }
-        else if ( key_word.size() <= 2 )
+        if ( key_word.size() <= 2 )
         {
             std::cerr << std::endl << "The key word must be at least 3 characters long" << std::endl;
             return;

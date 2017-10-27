@@ -16,8 +16,10 @@ set ( SRC_FILES
     ../src/base_decrypter.hpp
     ../src/caesar.hpp
     ../src/affine.hpp
+    ../src/vigenere_txt.hpp
 )
 
 add_executable( example1 example1.cpp ${SRC_FILES})
 add_executable( example2 example2.cpp ${SRC_FILES})
 add_executable( example3 example3.cpp ${SRC_FILES})
+add_executable( example4 example4.cpp ${SRC_FILES})
