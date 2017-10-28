@@ -7,7 +7,7 @@ class caesar : public base_decrypter
 {
     private:
     
-    void decryption_method( std::string &key_word )
+    void decryption_method( std::string key_word )
     {
         for ( int c = 0; c < static_cast<int>('Z' - 'A'); ++c )
         {
@@ -26,8 +26,6 @@ class caesar : public base_decrypter
                 return;
             }
         }
-        
-        this->my_ans.clear();
     }
 };
 

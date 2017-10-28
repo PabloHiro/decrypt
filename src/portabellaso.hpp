@@ -37,7 +37,7 @@ class portabellaso : public base_decrypter
         }
     }
     
-    void decryption_method( std::string &key_word )
+    void decryption_method( std::string key_word )
     {
         //Given a keyword, we must find where in the text its placed. This can be achieved by classifying
         //the letters in the text in to the first half or the last half of the alphabet. Once this is done,
@@ -59,7 +59,7 @@ class portabellaso : public base_decrypter
         }
         bool found = false;
         size_t index;
-        for( index = 0; index < (this->my_txt.size()-key_word.size()); ++index )
+        for( index = 0; index < (this->my_txt.size()-key_word.size()+1); ++index )
         {
             if (found)
             {

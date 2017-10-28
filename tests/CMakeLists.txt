@@ -17,9 +17,12 @@ set ( SRC_FILES
     ../src/caesar.hpp
     ../src/affine.hpp
     ../src/vigenere_txt.hpp
+    ../src/transposition.hpp
 )
 
 add_executable( example1 example1.cpp ${SRC_FILES})
 add_executable( example2 example2.cpp ${SRC_FILES})
 add_executable( example3 example3.cpp ${SRC_FILES})
 add_executable( example4 example4.cpp ${SRC_FILES})
+add_executable( example5 example5.cpp ${SRC_FILES})
+add_executable( example6 example6.cpp ${SRC_FILES})

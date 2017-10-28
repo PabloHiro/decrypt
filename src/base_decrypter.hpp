@@ -23,7 +23,7 @@ class base_decrypter
         }
     }
     
-    void solve( std::string &key_word )
+    void solve( std::string key_word )
     {
         if ( my_txt.empty() )
         {
@@ -69,7 +69,7 @@ class base_decrypter
         return true;
     }
     
-    virtual void decryption_method( std::string &key_word ) = 0;
+    virtual void decryption_method( std::string key_word ) = 0;
     
 };
 
