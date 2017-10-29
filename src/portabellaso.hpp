@@ -61,10 +61,8 @@ class portabellaso : public base_decrypter
         size_t index;
         for( index = 0; index < (this->my_txt.size()-key_word.size()+1); ++index )
         {
-            if (found)
-            {
-                break;
-            }
+            if (found) break;
+            
             for ( size_t j = 0; j < key_word.size(); ++j )
             {
                 if( txt_classifier[index+j]==key_classifier[j] )

@@ -27,10 +27,8 @@ class affine : public base_decrypter
         int b = 0;
         for( size_t i = 0; i < (this->my_txt.size() - key_word.size() + 1); ++i)
         {
-            if( found ) 
-            {
-                break;
-            }
+            if( found ) break;
+            
             // C1 = a*K1 + b
             // C2 = a*K2 + b
             // a * (K1 - K2) = (C1 - C2)

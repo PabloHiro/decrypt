@@ -26,16 +26,11 @@ class vigenere_txt : public base_decrypter
         size_t pwd_size = 0;
         for( pwd_size = 2; pwd_size < key_word.size(); ++pwd_size )
         {
-            if(found)
-            {
-                break;
-            }
+            if(found) break;
+            
             for( size_t i = pwd_size; i < (this->my_txt.size() - key_word.size() + 1); ++i )
             {
-                if(found)
-                {
-                    break;
-                }
+                if(found) break;
                 for( size_t j = 0; j < (key_word.size() - pwd_size); ++j )
                 {
                     const int txt = static_cast<int>(this->my_txt[i+j] - 'A');
@@ -58,8 +53,6 @@ class vigenere_txt : public base_decrypter
         
         if(found)
         {
-            //std::cerr<< "Password size is " << pwd_size << std::endl;
-            //std::cerr<< "Index is " << index << std::endl;
             this->my_ans.clear();
             this->my_ans.resize(this->my_txt.size());
             // We decrypt from the keyword
