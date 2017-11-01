@@ -75,6 +75,15 @@ class vigenere_txt : public base_decrypter
                 const int pwd = static_cast<int>(this->my_ans[i] - 'A');
                 this->my_ans[i-pwd_size] = static_cast<char>( ((txt-pwd >= 0)? (txt-pwd) : (26+txt-pwd)) + 'A');
             }
+
+            this->my_info.clear();
+            this->my_info = "Password is: ";
+            for ( size_t i = 0; i < pwd_size; ++i )
+            {
+                const int txt = static_cast<int>(this->my_txt[i] - 'A');
+                const int ans = static_cast<int>(this->my_ans[i] - 'A');
+                this->my_info+=static_cast<char>( ((txt-ans >= 0)? (txt-ans) : (26+txt-ans)) + 'A');
+            }
         }
     }
 };

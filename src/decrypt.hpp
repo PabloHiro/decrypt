@@ -9,6 +9,7 @@ std::string decrypt( std::string &the_text, std::string &key_word )
     D my_decrypter;
     my_decrypter.load(the_text);
     my_decrypter.solve(key_word);
+    my_decrypter.info();
     return my_decrypter.answer();
 }
 

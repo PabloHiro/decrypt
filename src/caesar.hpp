@@ -15,7 +15,7 @@ class caesar : public base_decrypter
             
             for( size_t i = 0; i < this->my_txt.size(); ++i )
             {
-                int curr = static_cast<int> (this->my_ans[i]);
+                int curr = static_cast<int>(this->my_ans[i] - 'A');
                 curr += c;
                 curr %= 26;
                 this->my_ans[i] = 'A' + static_cast<char>(curr);
@@ -23,6 +23,8 @@ class caesar : public base_decrypter
             
             if ( this->my_ans.find ( key_word ) != std::string::npos )
             {
+                this->my_info.clear();
+                this->my_info = "The password is " + std::to_string(c);
                 return;
             }
         }

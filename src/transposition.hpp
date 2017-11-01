@@ -80,6 +80,14 @@ class transposition : public base_decrypter
                 }
             }
         }
+        
+        this->my_info.clear();
+        this->my_info = "Password is: ";
+        for ( size_t i = 0; i < password.size(); ++i )
+        {
+            this->my_info+=password[i];
+        }
+
     }
 };
 

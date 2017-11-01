@@ -120,6 +120,13 @@ class portabellaso : public base_decrypter
             }
             const int txt = static_cast<int>(this->my_txt[0] - 'A');
             this->my_ans[0] = substitution(txt, password[password.size()-(index)%password.size()]);
+            
+            this->my_info.clear();
+            this->my_info = "Password is:";
+            for ( size_t i = 0; i < password.size(); ++i )
+            {
+                this->my_info+= " " + std::to_string(password[i]);
+            }
         }
     }
 };

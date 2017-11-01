@@ -83,6 +83,8 @@ class affine : public base_decrypter
                 }
                 this->my_ans.push_back( static_cast<char>(K) + 'A');
             }
+            this->my_info.clear();
+            this->my_info = "a = " + std::to_string(a) + ", b = " + std::to_string(b);
         }
     }
     

@@ -51,9 +51,16 @@ class base_decrypter
         return my_ans;
     }
     
+    
+    void info()
+    {
+        std::cerr << my_info << std::endl;
+    }
+    
     protected:
     std::string my_txt;
     std::string my_ans;
+    std::string my_info;
     
     private:
     
