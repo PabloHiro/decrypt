@@ -9,7 +9,7 @@ class transposition : public base_decrypter
 {
     private:
     
-    size_t get_pos( const std::vector<unsigned> &col_order , unsigned col )
+    size_t get_pos( const std::vector<unsigned> &col_order , const unsigned col )
     {
         for ( size_t i = 0; i < col_order.size(); ++i )
         {
